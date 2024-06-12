@@ -1,0 +1,26 @@
+spring: # Data base configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/gestiondestock?createDatabaseIfNotExist=true #jdbs:mysql://localhost:3306/nombasedonnees?param1=
+    username: root
+    password: Thales@2023
+    driver-class-name: com.mysql.cj.jdbc.Driver # nom du driver mysql
+  jpa: # Jpa config
+    show-sql: false #je dis a spring de ne pas afficher les requetes sql dans le log lorsque j'apelle un web service (endpoint)
+    hibernate:
+      ddl-auto: update # si on a les tables déja creé dans la BD on fait rien sinon on va creer les tables dans la BD
+    properties:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+logging:
+  level:
+    root: INFO
+server:
+  port: 8081
+  error:
+    include-binding-errors: always
+    include-message: always
+#http://localhost:8081/swagger-ui/index.html (url de la documentation graphique ui de notre application)
+#http://localhost:8081/v3/api-docs (url du fichier json de la documentation de notre application)
+
+
+
+
