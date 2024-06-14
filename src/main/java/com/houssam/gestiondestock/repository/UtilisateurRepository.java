@@ -20,4 +20,6 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Intege
             "u.entreprise e on e.id =:idEntreprise")
     List<Utilisateur> findUtilisateursByEntreprise(Integer idEntreprise);
 
+    Utilisateur findByMail(String mail);
+
 }

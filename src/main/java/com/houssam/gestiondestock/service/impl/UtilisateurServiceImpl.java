@@ -7,6 +7,8 @@ import com.houssam.gestiondestock.repository.UtilisateurRepository;
 import com.houssam.gestiondestock.service.UtilisateurService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,9 +22,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Autowired
     UtilisateurRepository utilisateurRepository;
 
+
     @Override
     public UtilisateurDto save(UtilisateurDto utilisateurDto) {
-
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        if(utilisateurDto.getMotDepasse() != null){
+            utilisateurDto.setMotDepasse(passwordEncoder.encode(utilisateurDto.getMotDepasse()));
+        }
         return utilisateurMapper.utilisateurToUtilisateurDto(
                 utilisateurRepository.save(
                         utilisateurMapper.utilisateurDtoToUtilisateur(utilisateurDto)));
@@ -58,5 +64,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         });
         return utilisateursDtos;
 
+    }
+
+    @Override
+    public UtilisateurDto findByMail(String mail) {
+        Utilisateur utilisateur = utilisateurRepository.findByMail(mail);
+        UtilisateurDto utilisateurDto = utilisateurMapper.utilisateurToUtilisateurDto(utilisateur);
+        return utilisateurDto;
     }
 }

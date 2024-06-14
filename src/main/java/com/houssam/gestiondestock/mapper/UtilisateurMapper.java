@@ -12,6 +12,7 @@ public interface UtilisateurMapper {
 
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "entreprise", ignore = true)
+    @Mapping(target = "motDepasse" , ignore = true)
     UtilisateurDto utilisateurToUtilisateurDto(Utilisateur utilisateur);
 
     @Mapping(target = "roles", ignore = true)

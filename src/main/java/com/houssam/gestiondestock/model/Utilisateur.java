@@ -11,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -52,6 +53,6 @@ public class Utilisateur implements Serializable {
     @JoinColumn(name = "entrepriseFK")
     private Entreprise entreprise;
 
-    @OneToMany(mappedBy = "utilisateur", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Role> roles;
+    @OneToMany(mappedBy = "utilisateur", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Role> roles = new ArrayList<>();
 }

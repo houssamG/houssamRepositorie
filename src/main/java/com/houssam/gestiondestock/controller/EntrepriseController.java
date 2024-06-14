@@ -2,7 +2,6 @@ package com.houssam.gestiondestock.controller;
 
 import com.houssam.gestiondestock.dto.EntrepriseDto;
 import com.houssam.gestiondestock.service.EntrepriseService;
-import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
